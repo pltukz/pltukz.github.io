@@ -1,10 +1,12 @@
 ---
 title: Hexo config
 date: 2022-04-15 23:07:30
-tags: 博客
+categories:
+- 博客
+tags: 
+- 博客
+- hexo
 ---
-
-# Hexo 配置
 
 ## 1.主配置文件
 
@@ -24,15 +26,32 @@ timezone:
 
 ​	<!-- more -->
 
-       ~~~  yaml
-       # Deployment
-       ## Docs: https://hexo.io/docs/one-command-deployment
-       deploy:
-         type: git  
-         repo: https://github.com/pltukz/pltukz.github.io.git
-         #repo: https://gitee.com/pltukz/pltukz.git
-         branch: master
-       ~~~
+```yaml
+   # Deployment
+   ## Docs: https://hexo.io/docs/one-command-deployment
+   deploy:
+     type: git  
+     repo: https://github.com/pltukz/pltukz.github.io.git
+     #repo: https://gitee.com/pltukz/pltukz.git
+     branch: master
+```
+
+~~~ yaml
+# 这一段默认就有的
+index_generator:
+  path: ''
+  per_page: 5
+  order_by: -date
+
+# 归档页面
+archive_generator:
+  per_page: 50
+  yearly: true
+  monthly: true
+————————————————
+版权声明：本文为CSDN博主「小镇攻城狮」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/awt_fudonglai/article/details/107435089
+~~~
 
 
 

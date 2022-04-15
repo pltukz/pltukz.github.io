@@ -1,7 +1,11 @@
 ---
 title: Docker
 date: 2022-04-14 13:27:15
-tags: 运维
+categories:
+- 运维
+tags: 
+- 运维
+- docker
 ---
 
 1. Images

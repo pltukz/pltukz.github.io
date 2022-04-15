@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ppt1-4 erd关系图1.实体类（对象）是什么实体简单而言就是一张表的一行，通常情况，一行拥有很多列（属性），而多个实体也就组成了实体类表格 2.erd是什么简而言之就是描述实体类（表）之间关系的图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql">
+<meta property="og:url" content="http://example.com/2022/04/16/sql/index.html">
+<meta property="og:site_name" content="Pltukz&#39;s blog">
+<meta property="og:description" content="ppt1-4 erd关系图1.实体类（对象）是什么实体简单而言就是一张表的一行，通常情况，一行拥有很多列（属性），而多个实体也就组成了实体类表格 2.erd是什么简而言之就是描述实体类（表）之间关系的图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/sql/1.png">
+<meta property="og:image" content="http://example.com/images/sql/2.png">
+<meta property="og:image" content="http://example.com/images/sql/3.png">
+<meta property="article:published_time" content="2022-04-15T17:28:03.000Z">
+<meta property="article:modified_time" content="2022-04-15T17:33:11.944Z">
+<meta property="article:author" content="Kens">
+<meta property="article:tag" content="sql">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/sql/1.png">
+
+
+<link rel="canonical" href="http://example.com/2022/04/16/sql/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/04/16/sql/","path":"2022/04/16/sql/","title":"sql"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>sql | Pltukz's blog</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Pltukz's blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep thinking</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ppt1-4-erd%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">ppt1-4 erd关系图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%AE%9E%E4%BD%93%E7%B1%BB%EF%BC%88%E5%AF%B9%E8%B1%A1%EF%BC%89%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">1.实体类（对象）是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-erd%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.2.</span> <span class="nav-text">2.erd是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-erd%E5%85%B3%E7%B3%BB%E7%BD%97%E5%88%97"><span class="nav-number">1.3.</span> <span class="nav-text">3.erd关系罗列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E5%BC%BA-%E5%BC%B1%E5%AE%9E%E4%BD%93"><span class="nav-number">1.4.</span> <span class="nav-text">4.强&#x2F;弱实体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E5%9C%A8%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E7%B3%BB%E4%B8%AD%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%90%88%E7%90%86%E5%BB%BA%E7%AB%8B%E2%80%9C%E6%A1%A5%E8%A1%A8%E2%80%9D"><span class="nav-number">1.5.</span> <span class="nav-text">5.在多对多关系中，可以合理建立“桥表”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E4%B8%BB%E9%94%AE-%E5%A4%96%E9%94%AE"><span class="nav-number">1.6.</span> <span class="nav-text">6.主键&#x2F;外键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F-%EF%BC%88NF%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">7.三大范式 （NF）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ppt5-6-SQL"><span class="nav-number">2.</span> <span class="nav-text">ppt5-6 SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFsql"><span class="nav-number">2.1.</span> <span class="nav-text">1.什么是sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">2.2.</span> <span class="nav-text">2.数据库的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-SQL%E8%AF%AD%E8%A8%80%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">2.3.</span> <span class="nav-text">3.SQL语言的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-SELECT"><span class="nav-number">2.4.</span> <span class="nav-text">4.SELECT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-INSERT"><span class="nav-number">2.5.</span> <span class="nav-text">5.INSERT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-UPDATE"><span class="nav-number">2.6.</span> <span class="nav-text">6.UPDATE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-DELETE"><span class="nav-number">2.7.</span> <span class="nav-text">7.DELETE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%9F%A5%E8%AF%A2%E6%9D%A1%E4%BB%B6where"><span class="nav-number">2.8.</span> <span class="nav-text">8.查询条件where</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E5%87%BD%E6%95%B0"><span class="nav-number">2.9.</span> <span class="nav-text">9.函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E6%8E%92%E5%BA%8F"><span class="nav-number">2.10.</span> <span class="nav-text">10.排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%88%86%E7%BB%84"><span class="nav-number">2.11.</span> <span class="nav-text">11.分组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E9%AB%98%E7%BA%A7%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.12.</span> <span class="nav-text">12.高级查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E5%9C%B0%E5%9D%80"><span class="nav-number">3.</span> <span class="nav-text">参考地址</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kens"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Kens</p>
+  <div class="site-description" itemprop="description">It's never too late to learn.</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/16/sql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Kens">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pltukz's blog">
+      <meta itemprop="description" content="It's never too late to learn.">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="sql | Pltukz's blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          sql
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-04-16 01:28:03 / 修改时间：01:33:11" itemprop="dateCreated datePublished" datetime="2022-04-16T01:28:03+08:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">开发</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="ppt1-4-erd关系图"><a href="#ppt1-4-erd关系图" class="headerlink" title="ppt1-4 erd关系图"></a>ppt1-4 erd关系图</h1><h2 id="1-实体类（对象）是什么"><a href="#1-实体类（对象）是什么" class="headerlink" title="1.实体类（对象）是什么"></a>1.实体类（对象）是什么</h2><p>实体简单而言就是一张表的一行，通常情况，一行拥有很多列（属性），而多个实体也就组成了实体类表格</p>
+<h2 id="2-erd是什么"><a href="#2-erd是什么" class="headerlink" title="2.erd是什么"></a>2.erd是什么</h2><p>简而言之就是描述实体类（表）之间关系的图</p>
+<span id="more"></span>
+
+<h2 id="3-erd关系罗列"><a href="#3-erd关系罗列" class="headerlink" title="3.erd关系罗列"></a>3.erd关系罗列</h2><img src="\images\sql\1.png" alt="erd关系图" style="zoom:75%;" />
+
+<p><strong>具体示例可以看</strong> <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1HC4y1W7w8">https://www.bilibili.com/video/BV1HC4y1W7w8</a></p>
+<h2 id="4-强-弱实体"><a href="#4-强-弱实体" class="headerlink" title="4.强/弱实体"></a>4.强/弱实体</h2><p>弱实体只是一个实体，它的存在依赖于另一个实体。如：在缺少员工（employee）表的情况下，您无法在逻辑上拥有依赖（儿子，女儿，..等）。它的轮廓与普通实体相同，但需要双划线标注。</p>
+<p><strong>具体参考 ppt3 20</strong></p>
+<h2 id="5-在多对多关系中，可以合理建立“桥表”"><a href="#5-在多对多关系中，可以合理建立“桥表”" class="headerlink" title="5.在多对多关系中，可以合理建立“桥表”"></a>5.在多对多关系中，可以合理建立“桥表”</h2><p>桥表就是第三张表，一般是弱实体表，可以去维护其他两张表的关系，以及更多细节。比如顾客和产品，就有多对多关系，可以建立订单表，订单表就可以记录订单时间之类的其他数据</p>
+<h2 id="6-主键-外键"><a href="#6-主键-外键" class="headerlink" title="6.主键/外键"></a>6.主键/外键</h2><p>主键特点：1.唯一</p>
+<pre><code>                2.不能改变
+
+                3.不能为空
+</code></pre>
+<p>外键：一般是两表关联的字段，通常为其他表的主键。比如在订单表中含有顾客id（顾客表主键），或者产品id（产品表主键），那么这两个字段在订单表中就是外键，一张表可以有多个外键。</p>
+<h2 id="7-三大范式-（NF）"><a href="#7-三大范式-（NF）" class="headerlink" title="7.三大范式 （NF）"></a>7.三大范式 （NF）</h2><p>1NF：<strong>要求数据库表的每一列都是不可分割的原子数据项。</strong></p>
+<p>2NF：<strong>在1NF的基础上消除部分依赖</strong></p>
+<pre><code>      *需要确保数据库表中的每一列都和主键相关，而不能只与主键的某一部分相关（主要针对联合主键而言）*
+</code></pre>
+<p>3NF：<strong>在2NF基础上消除传递依赖</strong></p>
+<pre><code>      *需要确保数据表中的每一列数据都和主键直接相关，而不能间接相关*
+</code></pre>
+<p>具体参考 文字：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wsg25/p/9615100.html">https://www.cnblogs.com/wsg25/p/9615100.html</a></p>
+<pre><code>             视频：https://www.bilibili.com/video/BV1uJ411k7wy?p=518
+</code></pre>
+<h1 id="ppt5-6-SQL"><a href="#ppt5-6-SQL" class="headerlink" title="ppt5-6 SQL"></a>ppt5-6 SQL</h1><h2 id="1-什么是sql"><a href="#1-什么是sql" class="headerlink" title="1.什么是sql"></a>1.什么是sql</h2><p><strong>SQL 是用于访问和处理数据库的标准的计算机语言</strong></p>
+<h2 id="2-数据库的关系"><a href="#2-数据库的关系" class="headerlink" title="2.数据库的关系"></a>2.数据库的关系</h2><p>一台电脑可以拥有多个数据库（database），一个数据库可以拥有多个数据表（table）</p>
+<img src="\images\sql\2.png" alt="2" style="zoom:75%;" />
+
+<h2 id="3-SQL语言的分类"><a href="#3-SQL语言的分类" class="headerlink" title="3.SQL语言的分类"></a>3.SQL语言的分类</h2><img src="\images\sql\3.png" style="zoom:67%;" />
+
+<p><strong>1. 数据查询语言DQL</strong>(重点) 数据操做-查询<br>1.SELECT </p>
+<p><strong>2 .数据操纵语言DML</strong>(重点) 数据操做-增删改</p>
+<p>1.插入：INSERT<br>2.更新：UPDATE<br>3.删除：DELETE</p>
+<p><strong>3. 数据定义语言DDL</strong> 数据库/表结构操做<br>1.创建：CREATE<br>2.更新：ALTER<br>3.删除：DROP</p>
+<p><strong>4. 数据控制语言DCL(一般了解即可，用到再百度)</strong><br>简而言之就是授权（比方用户A可以看到表A，而用户B不能看到表A，超级用户可以对表进行删除之类的权限分配与操做）</p>
+<h2 id="4-SELECT"><a href="#4-SELECT" class="headerlink" title="4.SELECT"></a>4.SELECT</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> 列名称 <span class="keyword">FROM</span> 表名称</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-INSERT"><a href="#5-INSERT" class="headerlink" title="5.INSERT"></a>5.INSERT</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名称 <span class="keyword">VALUES</span> (值<span class="number">1</span>, 值<span class="number">2</span>,....)</span><br></pre></td></tr></table></figure>
+
+<p>我们也可以指定所要插入数据的列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名称 (列<span class="number">1</span>, 列<span class="number">2</span>,...) <span class="keyword">VALUES</span> (值<span class="number">1</span>, 值<span class="number">2</span>,....)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="6-UPDATE"><a href="#6-UPDATE" class="headerlink" title="6.UPDATE"></a>6.UPDATE</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> 表名称 <span class="keyword">SET</span> 列名称 <span class="operator">=</span> 新值 <span class="keyword">WHERE</span> 列名称 <span class="operator">=</span> 某值</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7-DELETE"><a href="#7-DELETE" class="headerlink" title="7.DELETE"></a>7.DELETE</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> 表名称 <span class="keyword">WHERE</span> 列名称 <span class="operator">=</span> 值</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8-查询条件where"><a href="#8-查询条件where" class="headerlink" title="8.查询条件where"></a>8.查询条件where</h2><p>—&lt;, &gt;, &lt;=, &gt;=, !, !=,…</p>
+<p>—LIKE</p>
+<p>—NOT, AND, OR</p>
+<p>—BETWEEN</p>
+<p>—IN</p>
+<p>—IS NULL</p>
+<p>—IS NOT NULL</p>
+<h2 id="9-函数"><a href="#9-函数" class="headerlink" title="9.函数"></a>9.函数</h2><p>MIN, MAX, COUNT, SUM, AVG。。。</p>
+<h2 id="10-排序"><a href="#10-排序" class="headerlink" title="10.排序"></a>10.排序</h2><p>ORDER BY</p>
+<p>desc倒序</p>
+<h2 id="11-分组"><a href="#11-分组" class="headerlink" title="11.分组"></a>11.分组</h2><p>group by</p>
+<p>分组后过滤，having</p>
+<h2 id="12-高级查询"><a href="#12-高级查询" class="headerlink" title="12.高级查询"></a>12.高级查询</h2><ul>
+<li><p>多表联查</p>
+<p>1.内连接inner join</p>
+<p>2.外连接</p>
+<pre><code>    1）左外连接 LEFT
+  
+    2）右外连接 RIGHT
+</code></pre>
+</li>
+<li><p>子查询(课件里没讲)</p>
+</li>
+</ul>
+<h1 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a>参考地址</h1><p>视频.<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Kr4y1i7ru">https://www.bilibili.com/video/BV1Kr4y1i7ru</a></p>
+<p>文字.<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/sql/sql_join_left.asp">https://www.w3school.com.cn/sql/sql_join_left.asp</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/sql/" rel="tag"># sql</a>
+              <a href="/tags/mysql/" rel="tag"># mysql</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/04/16/%E5%AE%8F/" rel="prev" title="宏">
+                  <i class="fa fa-chevron-left"></i> 宏
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kens</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div><script color="255,255,255" opacity="1" zIndex="-1" count="99" src="/js/nest.js"></script>
+
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

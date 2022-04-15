@@ -20,29 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Images 数据卷，volume. -v pull dokerfile compose">
+    <meta name="description" content="1.linux基础1.目录结构1234567891011121314151617181920212223242526bin:bin为binary的简写，主要放置系统的必备执行文件，例如:cat、cp、chmod df、dmesg、gzip、kill、ls、mkdir、more、mount、rm、su、tar等	&#x2F;usr&#x2F;bin: 主要放置应用程序工具的必备执行文件，例如:c++、g++、gcc、c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Docker">
-<meta property="og:url" content="http://example.com/2022/04/14/docker/index.html">
+<meta property="og:title" content="Linux">
+<meta property="og:url" content="http://example.com/2022/04/15/linux/index.html">
 <meta property="og:site_name" content="Pltukz&#39;s blog">
-<meta property="og:description" content="Images 数据卷，volume. -v pull dokerfile compose">
+<meta property="og:description" content="1.linux基础1.目录结构1234567891011121314151617181920212223242526bin:bin为binary的简写，主要放置系统的必备执行文件，例如:cat、cp、chmod df、dmesg、gzip、kill、ls、mkdir、more、mount、rm、su、tar等	&#x2F;usr&#x2F;bin: 主要放置应用程序工具的必备执行文件，例如:c++、g++、gcc、c">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-14T05:27:15.000Z">
-<meta property="article:modified_time" content="2022-04-15T16:37:36.372Z">
+<meta property="article:published_time" content="2022-04-15T05:27:15.000Z">
+<meta property="article:modified_time" content="2022-04-15T17:34:22.780Z">
 <meta property="article:author" content="Kens">
 <meta property="article:tag" content="运维">
-<meta property="article:tag" content="docker">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2022/04/14/docker/">
+<link rel="canonical" href="http://example.com/2022/04/15/linux/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/04/14/docker/","path":"2022/04/14/docker/","title":"Docker"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/04/15/linux/","path":"2022/04/15/linux/","title":"Linux"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Docker | Pltukz's blog</title>
+<title>Linux | Pltukz's blog</title>
   
 
 
@@ -105,7 +105,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -118,6 +118,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-linux%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">1.linux基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">1.目录结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%91%BD%E4%BB%A4"><span class="nav-number">2.</span> <span class="nav-text">2.命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-find"><span class="nav-number">2.1.</span> <span class="nav-text">1.find</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-grep"><span class="nav-number">2.2.</span> <span class="nav-text">2.grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-tail"><span class="nav-number">2.3.</span> <span class="nav-text">3.tail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-xargs"><span class="nav-number">2.4.</span> <span class="nav-text">4.xargs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-exec"><span class="nav-number">2.5.</span> <span class="nav-text">5.exec</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%85%B6%E4%BB%96"><span class="nav-number">3.</span> <span class="nav-text">3.其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%EF%BC%880%EF%BC%8C1%EF%BC%8C2%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">1.（0，1，2）</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -182,7 +183,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/14/docker/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/15/linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -195,12 +196,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Docker | Pltukz's blog">
+      <meta itemprop="name" content="Linux | Pltukz's blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Docker
+          Linux
         </h1>
 
         <div class="post-meta-container">
@@ -211,14 +212,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-04-14 13:27:15" itemprop="dateCreated datePublished" datetime="2022-04-14T13:27:15+08:00">2022-04-14</time>
+      <time title="创建时间：2022-04-15 13:27:15" itemprop="dateCreated datePublished" datetime="2022-04-15T13:27:15+08:00">2022-04-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-16 00:37:36" itemprop="dateModified" datetime="2022-04-16T00:37:36+08:00">2022-04-16</time>
+      <time title="修改时间：2022-04-16 01:34:22" itemprop="dateModified" datetime="2022-04-16T01:34:22+08:00">2022-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -247,13 +248,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <ol>
-<li>Images</li>
-<li>数据卷，volume. -v</li>
-<li>pull</li>
-<li>dokerfile</li>
-<li>compose</li>
-</ol>
+        <h1 id="1-linux基础"><a href="#1-linux基础" class="headerlink" title="1.linux基础"></a>1.linux基础</h1><h2 id="1-目录结构"><a href="#1-目录结构" class="headerlink" title="1.目录结构"></a>1.目录结构</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">bin:</span></span><br><span class="line"><span class="string">bin为binary的简写，主要放置系统的必备执行文件，例如:</span></span><br><span class="line"><span class="string">cat、cp、chmod</span> <span class="string">df、dmesg、gzip、kill、ls、mkdir、more、mount、rm、su、tar等</span></span><br><span class="line">	</span><br><span class="line"><span class="string">/usr/bin:</span> </span><br><span class="line"><span class="string">主要放置应用程序工具的必备执行文件，例如:</span></span><br><span class="line"><span class="string">c++、g++、gcc、chdrv、diff、dig、du、eject、elm、free、gnome*、gzip、htpasswd、kfm、ktop、last、less、locale、m4、make、man、mcopy、ncftp、</span> <span class="string">newaliases、nslookup</span> <span class="string">passwd、quota、smb*、wget</span>		</span><br><span class="line"></span><br><span class="line"><span class="string">/sbin:</span></span><br><span class="line"><span class="string">主要放置系统管理的必备程序，例如:</span></span><br><span class="line"><span class="string">cfdisk、dhcpcd、dump、e2fsck、fdisk、halt、ifconfig、ifup、ifdown、init、insmod、lilo、lsmod、mke2fs、modprobe、quotacheck、reboot、rmmod、</span> <span class="string">runlevel、shutdown等</span></span><br><span class="line"></span><br><span class="line"><span class="string">/usr/sbin:</span></span><br><span class="line"><span class="string">主要放置网路管理的必备程序，例如:</span></span><br><span class="line"><span class="string">dhcpd、httpd、imap、in.*d、inetd、lpd、named、netconfig、nmbd、samba、sendmail、squid、swap、tcpd、tcpdump等</span></span><br><span class="line"></span><br><span class="line"><span class="string">•主目录：/root、/home/username</span></span><br><span class="line"><span class="string">•用户可执行文件：/bin、/usr/bin、/usr/local/bin</span></span><br><span class="line"><span class="string">•系统可执行文件：/sbin、/usr/sbin、/usr/local/sbin</span></span><br><span class="line"><span class="string">•其他挂载点：/media、/mnt</span></span><br><span class="line"><span class="string">•配置：/etc</span></span><br><span class="line"><span class="string">•临时文件：/tmp</span></span><br><span class="line"><span class="string">•内核和Bootloader：/boot</span></span><br><span class="line"><span class="string">•服务器数据：/var、/srv</span></span><br><span class="line"><span class="string">•系统信息：/proc、/sys</span></span><br><span class="line"><span class="string">•共享库：/lib、/usr/lib、/usr/local/lib</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h1 id="2-命令"><a href="#2-命令" class="headerlink" title="2.命令"></a>2.命令</h1><h2 id="1-find"><a href="#1-find" class="headerlink" title="1.find"></a>1.find</h2><p>find ./ -name”*.jpg” -type 查找文件</p>
+<p>find $(pwd) -name “1.jpg” 2&gt;/dev/null</p>
+<p>-print0 不换行输出</p>
+<p>-printf 可以定义找到的文件的格式</p>
+<p>“%f”只显示文件名字，不打印目录</p>
+<p>“%h”只打印目录部分，不打印文件名</p>
+<p>“%p”打印find注明路径之后的路径和文件</p>
+<p>-maxdepth 查找的目录深度最多多少层，后面跟数字</p>
+<p>-mindepth 查找的深度至少多少层</p>
+<p>可以两个结合使用表示搜索指定层级之间的内容-path 查找目录下的文件或子目录</p>
+<h2 id="2-grep"><a href="#2-grep" class="headerlink" title="2.grep"></a>2.grep</h2><p>grep  查找文件内容，相当于ctrl f</p>
+<p>-v 反选，屏蔽</p>
+<p> -r  递归查询子目录</p>
+<h2 id="3-tail"><a href="#3-tail" class="headerlink" title="3.tail"></a>3.tail</h2><p>待补充</p>
+<h2 id="4-xargs"><a href="#4-xargs" class="headerlink" title="4.xargs"></a>4.xargs</h2><p>待补充</p>
+<h2 id="5-exec"><a href="#5-exec" class="headerlink" title="5.exec"></a>5.exec</h2><p> 以-exec开头，以;或+结束</p>
+<h1 id="3-其他"><a href="#3-其他" class="headerlink" title="3.其他"></a>3.其他</h1><h2 id="1-（0，1，2）"><a href="#1-（0，1，2）" class="headerlink" title="1.（0，1，2）"></a>1.（0，1，2）</h2><p>0标准输入</p>
+<p>1标准输出</p>
+<p>2错误输出</p>
+<p>所以2&gt;/dev/null意思是错误的输出指向/dev/null这个地址,这个地址在linux中也被叫小黑洞</p>
+<p>2&gt;&amp;1 | grep -v “屏蔽的内容”</p>
+<p>意思是把错误内容也当作输出，然后通过grep -v屏蔽</p>
 
     </div>
 
@@ -264,17 +284,20 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag"># 运维</a>
-              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/linux/" rel="tag"># linux</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2022/04/14/docker/" rel="prev" title="Docker">
+                  <i class="fa fa-chevron-left"></i> Docker
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/04/15/linux/" rel="next" title="Linux">
-                  Linux <i class="fa fa-chevron-right"></i>
+                <a href="/2022/04/15/Hexo-config/" rel="next" title="Hexo config">
+                  Hexo config <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

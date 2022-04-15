@@ -1,7 +1,7 @@
 ---
 title: Linux
 date: 2022-04-14 13:27:15
-tags:
+tags: 运维
 ---
 
 1. find ./ -name"*.jpg" -type 查找文件
@@ -61,6 +61,8 @@ tags:
 1. grep  查找文件内容，相当于ctrl f
 
 ​     	 Grep -v 反选，屏蔽
+
+​		  -r  递归查询子目录
 
 1. tail
 2. xargs

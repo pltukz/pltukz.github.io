@@ -106,3 +106,23 @@ grep  查找文件内容，相当于ctrl f
 2>&1 | grep -v "屏蔽的内容"
 
 意思是把错误内容也当作输出，然后通过grep -v屏蔽
+
+
+
+# 4.快捷键
+
+1. ctrl l 清屏
+
+2. cd - 返回上一次停留的目录
+
+3. history 历史命令会有一个number
+
+   -number 显示最近n条数据
+
+   n 显示n条以后的数据
+
+4. ！number 快速执行history命令
+
+5. ！！执行上一条命令
+
+6. tail -f -n50 /filename 滚动查看指定文件

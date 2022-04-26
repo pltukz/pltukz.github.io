@@ -21,9 +21,9 @@ ctrl + e 显示最近打开的文件记录列表
 
 shift + f6 多个参数同时改名
 
-<!--  more -->
-
 ctrl + alt + l 整理代码
+
+<!-- more -->
 
 ctrl + shift+ alt + l 整理代码
 

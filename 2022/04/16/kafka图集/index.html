@@ -20,26 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1.rebalance">
+    <meta name="description" content="1.controller">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kafka图集">
 <meta property="og:url" content="http://example.com/2022/04/16/kafka%E5%9B%BE%E9%9B%86/index.html">
 <meta property="og:site_name" content="Pltukz&#39;s blog">
-<meta property="og:description" content="1.rebalance">
+<meta property="og:description" content="1.controller">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/kafka/controller.png">
 <meta property="og:image" content="http://example.com/images/kafka/rebalance.png">
 <meta property="og:image" content="http://example.com/images/kafka/防止消息丢失.png">
 <meta property="og:image" content="http://example.com/images/kafka/防止重复消费.png">
 <meta property="og:image" content="http://example.com/images/kafka/高水位和leo.png">
 <meta property="og:image" content="http://example.com/images/kafka/顺序消费.png">
 <meta property="og:image" content="http://example.com/images/kafka/消息积压.png">
-<meta property="article:published_time" content="2022-04-15T18:35:34.818Z">
-<meta property="article:modified_time" content="2022-04-15T18:50:02.078Z">
+<meta property="article:published_time" content="2022-04-15T18:35:34.000Z">
+<meta property="article:modified_time" content="2022-06-11T10:37:06.931Z">
 <meta property="article:author" content="Kens">
 <meta property="article:tag" content="mq">
 <meta property="article:tag" content="kafka">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/kafka/rebalance.png">
+<meta name="twitter:image" content="http://example.com/images/kafka/controller.png">
 
 
 <link rel="canonical" href="http://example.com/2022/04/16/kafka%E5%9B%BE%E9%9B%86/">
@@ -125,7 +126,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-rebalance"><span class="nav-number">1.</span> <span class="nav-text">1.rebalance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E9%98%B2%E6%AD%A2%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1"><span class="nav-number">2.</span> <span class="nav-text">2.防止消息丢失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9"><span class="nav-number">3.</span> <span class="nav-text">3.防止重复消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%AB%98%E6%B0%B4%E4%BD%8D%E5%92%8Cleo"><span class="nav-number">4.</span> <span class="nav-text">4.高水位和leo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%A1%BA%E5%BA%8F%E6%B6%88%E8%B4%B9"><span class="nav-number">5.</span> <span class="nav-text">5.顺序消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%B6%88%E6%81%AF%E7%A7%AF%E5%8E%8B"><span class="nav-number">6.</span> <span class="nav-text">6.消息积压</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-controller"><span class="nav-number">1.</span> <span class="nav-text">1.controller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-rebalance"><span class="nav-number">2.</span> <span class="nav-text">2.rebalance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E9%98%B2%E6%AD%A2%E6%B6%88%E6%81%AF%E4%B8%A2%E5%A4%B1"><span class="nav-number">3.</span> <span class="nav-text">3.防止消息丢失</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D%E6%B6%88%E8%B4%B9"><span class="nav-number">4.</span> <span class="nav-text">4.防止重复消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E9%AB%98%E6%B0%B4%E4%BD%8D%E5%92%8Cleo"><span class="nav-number">5.</span> <span class="nav-text">5.高水位和leo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E9%A1%BA%E5%BA%8F%E6%B6%88%E8%B4%B9"><span class="nav-number">6.</span> <span class="nav-text">6.顺序消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%B6%88%E6%81%AF%E7%A7%AF%E5%8E%8B"><span class="nav-number">7.</span> <span class="nav-text">7.消息积压</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -140,18 +141,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -218,9 +219,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2022-04-16 02:35:34 / 修改时间：02:50:02" itemprop="dateCreated datePublished" datetime="2022-04-16T02:35:34+08:00">2022-04-16</time>
+      <time title="创建时间：2022-04-16 02:35:34" itemprop="dateCreated datePublished" datetime="2022-04-16T02:35:34+08:00">2022-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-11 18:37:06" itemprop="dateModified" datetime="2022-06-11T18:37:06+08:00">2022-06-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -253,18 +260,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="1-rebalance"><a href="#1-rebalance" class="headerlink" title="1.rebalance"></a>1.rebalance</h2><img src="\images\kafka\rebalance.png"  />
+        <h2 id="1-controller"><a href="#1-controller" class="headerlink" title="1.controller"></a>1.controller</h2><img src="\images\kafka\controller.png"  />
+
 <span id="more"></span>
 
-<h2 id="2-防止消息丢失"><a href="#2-防止消息丢失" class="headerlink" title="2.防止消息丢失"></a>2.防止消息丢失</h2><img src="\images\kafka\防止消息丢失.png"  />
+<h2 id="2-rebalance"><a href="#2-rebalance" class="headerlink" title="2.rebalance"></a>2.rebalance</h2><img src="\images\kafka\rebalance.png"  />
 
-<h2 id="3-防止重复消费"><a href="#3-防止重复消费" class="headerlink" title="3.防止重复消费"></a>3.防止重复消费</h2><img src="\images\kafka\防止重复消费.png"  />
+<h2 id="3-防止消息丢失"><a href="#3-防止消息丢失" class="headerlink" title="3.防止消息丢失"></a>3.防止消息丢失</h2><img src="\images\kafka\防止消息丢失.png"  />
 
-<h2 id="4-高水位和leo"><a href="#4-高水位和leo" class="headerlink" title="4.高水位和leo"></a>4.高水位和leo</h2><img src="\images\kafka\高水位和leo.png"  />
+<h2 id="4-防止重复消费"><a href="#4-防止重复消费" class="headerlink" title="4.防止重复消费"></a>4.防止重复消费</h2><img src="\images\kafka\防止重复消费.png"  />
 
-<h2 id="5-顺序消费"><a href="#5-顺序消费" class="headerlink" title="5.顺序消费"></a>5.顺序消费</h2><img src="\images\kafka\顺序消费.png"  />
+<h2 id="5-高水位和leo"><a href="#5-高水位和leo" class="headerlink" title="5.高水位和leo"></a>5.高水位和leo</h2><img src="\images\kafka\高水位和leo.png"  />
 
-<h2 id="6-消息积压"><a href="#6-消息积压" class="headerlink" title="6.消息积压"></a>6.消息积压</h2><img src="\images\kafka\消息积压.png"  />
+<h2 id="6-顺序消费"><a href="#6-顺序消费" class="headerlink" title="6.顺序消费"></a>6.顺序消费</h2><img src="\images\kafka\顺序消费.png"  />
+
+<h2 id="7-消息积压"><a href="#7-消息积压" class="headerlink" title="7.消息积压"></a>7.消息积压</h2><img src="\images\kafka\消息积压.png"  />
 
     </div>
 
@@ -287,6 +297,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/04/26/idea%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="next" title="idea快捷键">
+                  idea快捷键 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
